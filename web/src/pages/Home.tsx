@@ -4,6 +4,7 @@ import { MapPin, Mail, Phone, Calendar, Pin } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { sanityClient } from '@/lib/sanity'
+import { useAuth } from '@/contexts/AuthContext'
 import { siteSettings as mockSettings, boardMembers as mockBoard, announcements as mockAnnouncements } from '@/data/mockData'
 import type { SanityAnnouncement, SanityBoardMember, SanitySettings } from '@/types'
 
@@ -15,6 +16,7 @@ const BADGE_COLORS: Record<string, string> = {
 }
 
 export default function Home() {
+  const { session } = useAuth()
   const [announcements, setAnnouncements] = useState<SanityAnnouncement[]>([])
   const [board, setBoard] = useState<SanityBoardMember[]>([])
   const [settings, setSettings] = useState<SanitySettings | null>(null)
@@ -26,7 +28,7 @@ export default function Home() {
         `*[_type == "announcement"] | order(pinned desc, date desc)[0...3]`
       ),
       sanityClient.fetch<SanityBoardMember[]>(
-        `*[_type == "boardMember"] | order(displayOrder asc)`
+        `*[_type == "boardMember"] | order(displayOrder asc){ _id, name, role, displayOrder, phone, email }`
       ),
       sanityClient.fetch<SanitySettings>(
         `*[_type == "siteSettings"][0]`
@@ -46,7 +48,7 @@ export default function Home() {
 
   const displayBoard = board.length > 0
     ? board
-    : mockBoard.map(m => ({ ...m, _id: m.id, displayOrder: 0 }))
+    : mockBoard.map(m => ({ ...m, _id: m.id, displayOrder: 0, phone: undefined, email: undefined }))
 
   const cfg = settings ?? {}
   const tagline = cfg.heroTagline ?? mockSettings.heroTagline
@@ -69,9 +71,15 @@ export default function Home() {
             <Button asChild size="lg" className="bg-white text-primary-800 hover:bg-white/90 font-semibold">
               <Link to="/announcements">View Announcements</Link>
             </Button>
-            <Button asChild size="lg" variant="outline" className="border-white/60 text-white hover:bg-white/10 bg-transparent">
-              <Link to="/login">Member Login</Link>
-            </Button>
+            {session ? (
+              <Button asChild size="lg" variant="outline" className="border-white/60 text-white hover:bg-white/10 bg-transparent">
+                <Link to="/documents">Member Area</Link>
+              </Button>
+            ) : (
+              <Button asChild size="lg" variant="outline" className="border-white/60 text-white hover:bg-white/10 bg-transparent">
+                <Link to="/login">Member Login</Link>
+              </Button>
+            )}
           </div>
         </div>
       </section>
@@ -122,9 +130,19 @@ export default function Home() {
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {displayBoard.map((m) => (
               <Card key={m._id}>
-                <CardContent className="pt-5 pb-4">
+                <CardContent className="pt-5 pb-4 space-y-1">
                   <p className="font-semibold text-gray-900">{m.name}</p>
-                  <p className="text-sm text-primary-700 mt-0.5 font-medium">{m.role}</p>
+                  <p className="text-sm text-primary-700 font-medium">{m.role}</p>
+                  {session && m.phone && (
+                    <a href={`tel:${m.phone}`} className="flex items-center gap-1.5 text-xs text-gray-500 hover:text-primary-700 transition-colors pt-1">
+                      <Phone className="h-3 w-3 flex-shrink-0" />{m.phone}
+                    </a>
+                  )}
+                  {session && m.email && (
+                    <a href={`mailto:${m.email}`} className="flex items-center gap-1.5 text-xs text-primary-700 hover:underline">
+                      <Mail className="h-3 w-3 flex-shrink-0" />{m.email}
+                    </a>
+                  )}
                 </CardContent>
               </Card>
             ))}

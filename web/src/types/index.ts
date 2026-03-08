@@ -62,6 +62,8 @@ export interface SanityBoardMember {
   name: string
   role: string
   displayOrder: number
+  phone?: string
+  email?: string
 }
 
 export interface SanityVendor {
