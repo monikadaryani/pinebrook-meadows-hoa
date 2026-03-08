@@ -36,6 +36,7 @@ export interface Homeowner {
   address: string
   phone?: string
   email?: string
+  otherEmail?: string
   moveInDate?: string
 }
 

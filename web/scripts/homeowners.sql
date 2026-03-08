@@ -1,0 +1,53 @@
+-- Pine Brook Meadows HOA — Homeowners import (from 241009_Owners_PBMHOA.pdf)
+-- Step 1: Run schema-change.sql first to add the other_email column
+-- Step 2: Then run this file in Supabase Dashboard → SQL Editor
+
+INSERT INTO public.homeowners (name, address, phone, email, other_email) VALUES
+('Minsuk Chang & Anne Hong',                    '21206 SE 28th Street, Sammamish, WA 98075',                 NULL,               NULL,                               NULL),
+('Steve Schock & Tracy Schock',                 '21214 SE 28th Street, Sammamish, WA 98075',                 '(425) 392-4667',   'tsschock@comcast.net',             NULL),
+('Sijing Xin & Ying Chen',                      '21222 SE 28th Street, Sammamish, WA 98075',                 '480-278-6221',     'ethan.yc1212@gmail.com',           NULL),
+('Yihua Xiong & Honwei Xiong',                  '21230 SE 28th Street, Sammamish, WA 98075',                 NULL,               'yihuax@yahoo.com',                 NULL),
+('Robert E Frey',                               '1115 E Denny Way, Seattle, WA 98122',                       '(425) 391-2320',   'bobfrey@gmail.com',                'bob@lakesideadvisors.com'),
+('Bruce Adams & Judy Adams',                    '21246 SE 28th Street, Sammamish, WA 98075',                 '425-392-6999',     'bruceandjudy1986@comcast.net',     NULL),
+('Tony Fuchs & Elizabeth Fuchs',                '21252 SE 28th Street, Sammamish, WA 98075',                 '(425) 837-8783',   'elizabeth.jean.fuchs@gmail.com',   'tony_fuchs@yahoo.com'),
+('Costin Hagiu & Mihaela Hagiu',                '2804 213th Avenue SE, Sammamish, WA 98075',                 '(425) 391-1594',   'costinh@hotmail.com',              NULL),
+('John Shannon & Amy Shannon',                  '2814 213th Avenue SE, Sammamish, WA 98075',                 '(425) 391-5955',   'jshannon@jgsappraisal.com',        'amyshann@gmail.com'),
+('Prasanth Shekar Iyer & Monali Rajan Nair',    '2822 213th Avenue SE, Sammamish, WA 98075',                 '213-448-1892',     'shekarprashant@gmail.com',         'andrewyiyi@gmail.com'),
+('Richard Miyauchi & Kathy Miyauchi',           '2830 213th Avenue SE, Sammamish, WA 98075',                 '(425) 392-0608',   'kmiyauchi@gmail.com',              NULL),
+('Camay Wells & Jamie Wells',                   '2836 213th Avenue SE, Sammamish, WA 98075',                 '(917) 862-4184',   'camay418@yahoo.com',               'wellsie1607@gmail.com'),
+('Lynnda Fretwell',                             '21243 SE 29th Street, Sammamish, WA 98075',                 '425-747-3662',     'lynndan2@yahoo.com',               NULL),
+('Peggy Cukier & Benny Cukier',                 '21235 SE 29th Street, Sammamish, WA 98075',                 '425-785-3649',     'proprie18@msn.com',                NULL),
+('Cory A Sievert & Brie B Sievert',             '21227 SE 29th Street, Sammamish, WA 98075',                 NULL,               'wildslope@gmail.com',              'islandsetter@gmail.com'),
+('Jerry Wagner & Lilian Wagner',                '3607 228th Avenue SE, Apt. 225, Issaquah, WA 98029',        '425-557-7922',     'jettoe@pacbell.net',               NULL),
+('Huanhuan Jia & Weimin Yang',                  '21211 SE 29th Street, Sammamish, WA 98075',                 NULL,               'huanhuan_flying@hotmail.com',      NULL),
+('Manikandan Sundaram & Padma Priya Sathiyaraj','21203 SE 29th Street, Sammamish, WA 98075',                 NULL,               NULL,                               NULL),
+('Joachim Stahl & Monica Marin',                '21202 SE 29th Street, Sammamish, WA 98075',                 '(425) 200-0648',   'jmstahl@ymail.com',                NULL),
+('Howard Edson & Jennifer Edson',               '21210 SE 29th Street, Sammamish, WA 98075',                 '(425) 677-7471',   'jennifer.edson.cpa@gmail.com',     'howard.edson@gmail.com'),
+('Kelley Pope & Michael T Pope',                '21220 SE 29th Street, Sammamish, WA 98075',                 NULL,               'threeoverpar@gmail.com',           NULL),
+('Sapnashri Suresh & Ravi G Suresh',            '21224 SE 29th Street, Sammamish, WA 98075',                 NULL,               'sapnashri.s@gmail.com',            'gouthampravi@gmail.com'),
+('David Wilson & Hui Wilson',                   '21228 SE 29th Street, Sammamish, WA 98075',                 '(425) 830-5814',   'davew@outlook.com',                NULL),
+('Zhinan Guan & Yilin Zhao',                    '21240 SE 29th Street, Sammamish, WA 98075',                 '626-328-8480',     'zhianguan@gmail.com',              NULL),
+('Curt Miller & Pam Miller',                    '2821 213th Avenue SE, Sammamish, WA 98075',                 '425-864-6485',     'millerpam3924@gmail.com',          'cmiller@airnote.net'),
+('Joseph Munoz',                                '9059 E Shorewood Drive, Apt. 684, Mercer Island, WA 98040', NULL,               'munozjos84@gmail.com',             'mollie.e.munoz@gmail.com'),
+('Charley Wen & Carolyn Wen',                   '10902 NE 39th Place, Bellevue, WA 98004',                   NULL,               'carolynhouwen@gmail.com',          'pccwen@hotmail.com'),
+('Gregory Janky & Sena Janky',                  '21229 SE 28th Street, Sammamish, WA 98075',                 '425-369-0114',     'sena.janky@gmail.com',             'greg.janky@mac.com'),
+('Lincoln Yeager & Jamie Halverson',            '21221 SE 28th Street, Sammamish, WA 98075',                 '(425) 681-5643',   'lyeager1981@gmail.com',            NULL),
+('Brian Ishii & Marie Ishii',                   '21213 SE 28th Street, Sammamish, WA 98075',                 '(425) 391-0735',   'boo4558@comcast.net',              'ishiibk@gmail.com'),
+('Navranjan Khanna & Tanuja Khanna',            '21205 SE 28th Place, Sammamish, WA 98075',                  '754-317-8841',     'navranjan_khanna@live.com',        NULL),
+('Frank Souliere & Danielle Souliere',          '3134 213th Place SE, Sammamish, WA 98075',                  '(425) 427-1569',   'daniellesouliere@gmail.com',       'franksouliere@gmail.com'),
+('Jodi Schalock & Pete Scharlock',              '3130 213th Place SE, Sammamish, WA 98075',                  '(425) 391-8893',   'jscharlock@gmail.com',             'pscharlock@comcast.net'),
+('Harsha Aduri & Monika Daryani',               '3126 213th Place SE, Sammamish, WA 98075',                  '858-291-2000',     'robertsatya@gmail.com',            'monikadaryani10@gmail.com'),
+('Patrick Lu & Hsiang-Jung Chen',               '3122 213th Place SE, Sammamish, WA 98075',                  NULL,               'perf.patrick.lu@gmail.com',        NULL),
+('Dave Breen & Sanae Breen',                    '3118 213th Place SE, Sammamish, WA 98075',                  '(425) 837-9254',   'dpbreen1@comcast.net',             NULL),
+('Tim Backman & Leslie Ault',                   '3114 213th Place SE, Sammamish, WA 98075',                  '(425) 391-2958',   'leslie-e-ault@comcast.net',        NULL),
+('Allen Asbury & Teressa Maylor',               '3110 213th Place SE, Sammamish, WA 98075',                  '(425) 391-4886',   'aratem@juno.com',                  NULL),
+('John Chen & Andrea Wang',                     '3421 224th Avenue SE, Sammamish, WA 98075',                 '(425) 427-1339',   'zhanliang@hotmail.com',            'aijunwang@hotmail.com'),
+('Kersten Brinkworth & Andrew Brinkworth',      '3102 213th Place SE, Sammamish, WA 98075',                  '(206) 310-0264',   'andrewbrinkworth@hotmail.com',     'kbrinkwo@fredhutch.org'),
+('Amr Suleiman & Hala Abdel-Baky',              '3103 213th Place SE, Sammamish, WA 98075',                  NULL,               'amrzahir@gmail.com',               NULL),
+('Frank Liu & Jun Wang',                        '3107 213th Place SE, Sammamish, WA 98075',                  '(425) 557-6760',   'xhljwll@gmail.com',                NULL),
+('Jason Lin & Anna Chao',                       '4640 231st Place SE, Sammamish, WA 98075',                  '(425) 427-6688',   'annachao99@yahoo.com',             'linjz@comcast.net'),
+('Tonmoy G Navare & Arti T Navare',             '3115 213th Place SE, Sammamish, WA 98075',                  NULL,               'navare@gmail.com',                 NULL),
+('Aric Van de Vord & Susan Van de Vord',        '3119 213th Place SE, Sammamish, WA 98075',                  '(425) 444-5737',   'dancebeat2000@yahoo.com',          'beatleboy22@yahoo.com');
+
+-- Verify
+SELECT COUNT(*) AS total_rows FROM public.homeowners;

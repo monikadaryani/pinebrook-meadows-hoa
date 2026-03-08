@@ -48,6 +48,15 @@ function HomeownerCard({ h }: { h: Homeowner }) {
             {h.email}
           </a>
         )}
+        {h.otherEmail && (
+          <a
+            href={`mailto:${h.otherEmail}`}
+            className="flex items-center gap-2 text-sm text-primary-700 hover:underline"
+          >
+            <Mail className="h-3.5 w-3.5 text-gray-400 flex-shrink-0" />
+            {h.otherEmail}
+          </a>
+        )}
         {h.moveInDate && (
           <div className="flex items-center gap-2 text-sm text-gray-400">
             <Calendar className="h-3.5 w-3.5 flex-shrink-0" />
@@ -90,7 +99,7 @@ export default function Directory() {
   useEffect(() => {
     supabase
       .from('homeowners')
-      .select('id, name, address, phone, email, move_in_date')
+      .select('id, name, address, phone, email, other_email, move_in_date')
       .order('name')
       .then(({ data, error }) => {
         if (error) {
@@ -103,6 +112,7 @@ export default function Directory() {
               address: row.address,
               phone: row.phone ?? undefined,
               email: row.email ?? undefined,
+              otherEmail: row.other_email ?? undefined,
               moveInDate: row.move_in_date ?? undefined,
             }))
           )
