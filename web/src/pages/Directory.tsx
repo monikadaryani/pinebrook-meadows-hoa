@@ -1,7 +1,9 @@
+import { useState, useEffect } from 'react'
 import { User, Home, Phone, Mail, Calendar, Lock } from 'lucide-react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { homeowners } from '@/data/mockData'
+import { Skeleton } from '@/components/ui/skeleton'
+import { supabase } from '@/lib/supabase'
 import type { Homeowner } from '@/types'
 
 function groupByStreet(list: Homeowner[]) {
@@ -61,7 +63,54 @@ function HomeownerCard({ h }: { h: Homeowner }) {
   )
 }
 
+function CardSkeletons() {
+  return (
+    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      {Array.from({ length: 6 }).map((_, i) => (
+        <Card key={i}>
+          <CardHeader className="pb-2">
+            <Skeleton className="h-5 w-3/4" />
+            <Skeleton className="h-4 w-full mt-1" />
+          </CardHeader>
+          <CardContent className="space-y-2 pt-0">
+            <Skeleton className="h-4 w-1/2" />
+            <Skeleton className="h-4 w-2/3" />
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+  )
+}
+
 export default function Directory() {
+  const [homeowners, setHomeowners] = useState<Homeowner[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    supabase
+      .from('homeowners')
+      .select('id, name, address, phone, email, move_in_date')
+      .order('name')
+      .then(({ data, error }) => {
+        if (error) {
+          setError('Unable to load the directory. Please try again later.')
+        } else {
+          setHomeowners(
+            (data ?? []).map((row) => ({
+              id: row.id,
+              name: row.name,
+              address: row.address,
+              phone: row.phone ?? undefined,
+              email: row.email ?? undefined,
+              moveInDate: row.move_in_date ?? undefined,
+            }))
+          )
+        }
+        setLoading(false)
+      })
+  }, [])
+
   const streetGroups = groupByStreet(homeowners)
 
   return (
@@ -75,6 +124,12 @@ export default function Directory() {
       </div>
       <p className="text-gray-500 mb-8">Connect with your neighbors in Pine Brook Meadows</p>
 
+      {error && (
+        <div className="rounded-md bg-red-50 border border-red-200 text-red-700 px-4 py-3 text-sm mb-8">
+          {error}
+        </div>
+      )}
+
       <Tabs defaultValue="all">
         <TabsList className="mb-8">
           <TabsTrigger value="all">All Residents</TabsTrigger>
@@ -82,28 +137,40 @@ export default function Directory() {
         </TabsList>
 
         <TabsContent value="all">
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {homeowners.map((h) => (
-              <HomeownerCard key={h.id} h={h} />
-            ))}
-          </div>
+          {loading ? (
+            <CardSkeletons />
+          ) : homeowners.length === 0 ? (
+            <p className="text-gray-500 text-center py-12">No residents listed yet.</p>
+          ) : (
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              {homeowners.map((h) => (
+                <HomeownerCard key={h.id} h={h} />
+              ))}
+            </div>
+          )}
         </TabsContent>
 
         <TabsContent value="by-street">
-          <div className="space-y-10">
-            {streetGroups.map(([street, residents]) => (
-              <div key={street}>
-                <h3 className="font-playfair text-2xl font-semibold text-primary-700 mb-4">
-                  {street}
-                </h3>
-                <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                  {residents.map((h) => (
-                    <HomeownerCard key={h.id} h={h} />
-                  ))}
+          {loading ? (
+            <CardSkeletons />
+          ) : streetGroups.length === 0 ? (
+            <p className="text-gray-500 text-center py-12">No residents listed yet.</p>
+          ) : (
+            <div className="space-y-10">
+              {streetGroups.map(([street, residents]) => (
+                <div key={street}>
+                  <h3 className="font-playfair text-2xl font-semibold text-primary-700 mb-4">
+                    {street}
+                  </h3>
+                  <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                    {residents.map((h) => (
+                      <HomeownerCard key={h.id} h={h} />
+                    ))}
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </TabsContent>
       </Tabs>
     </div>
