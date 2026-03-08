@@ -16,7 +16,7 @@ const memberLinks = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
-  const { isLoggedIn, logout } = useAuth()
+  const { session, signOut } = useAuth()
 
   const linkClass = ({ isActive }: { isActive: boolean }) =>
     `text-sm font-medium transition-colors hover:text-primary ${isActive ? 'text-primary' : 'text-gray-600'}`
@@ -39,12 +39,12 @@ export default function Navbar() {
             {publicLinks.map((l) => (
               <NavLink key={l.to} to={l.to} className={linkClass}>{l.label}</NavLink>
             ))}
-            {isLoggedIn && memberLinks.map((l) => (
+            {!!session && memberLinks.map((l) => (
               <NavLink key={l.to} to={l.to} className={linkClass}>{l.label}</NavLink>
             ))}
-            {isLoggedIn ? (
+            {!!session ? (
               <button
-                onClick={logout}
+                onClick={signOut}
                 className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-700 transition-colors"
               >
                 <LogOut className="h-4 w-4" />
@@ -80,7 +80,7 @@ export default function Navbar() {
                 {l.label}
               </NavLink>
             ))}
-            {isLoggedIn && memberLinks.map((l) => (
+            {!!session && memberLinks.map((l) => (
               <NavLink
                 key={l.to}
                 to={l.to}
@@ -91,9 +91,9 @@ export default function Navbar() {
               </NavLink>
             ))}
             <div className="pt-2 border-t border-gray-100 mt-2">
-              {isLoggedIn ? (
+              {!!session ? (
                 <button
-                  onClick={() => { logout(); setOpen(false) }}
+                  onClick={() => { signOut(); setOpen(false) }}
                   className="flex items-center gap-2 px-3 py-2 text-sm text-gray-500 hover:bg-gray-50 rounded-md w-full"
                 >
                   <LogOut className="h-4 w-4" />

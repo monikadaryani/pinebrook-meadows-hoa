@@ -1,33 +1,43 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useEffect, useState } from 'react'
+import type { Session } from '@supabase/supabase-js'
+import { supabase } from '@/lib/supabase'
 
 interface AuthContextType {
-  isLoggedIn: boolean
-  userEmail: string | null
-  login: (email: string) => void
-  logout: () => void
+  session: Session | null
+  loading: boolean
+  signOut: () => Promise<void>
 }
 
-const AuthContext = createContext<AuthContextType | null>(null)
-
-const STORAGE_KEY = 'pbm-demo-auth'
+export const AuthContext = createContext<AuthContextType | null>(null)
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [userEmail, setUserEmail] = useState<string | null>(() =>
-    localStorage.getItem(STORAGE_KEY)
-  )
+  const [session, setSession] = useState<Session | null>(null)
+  const [loading, setLoading] = useState(true)
 
-  const login = (email: string) => {
-    localStorage.setItem(STORAGE_KEY, email)
-    setUserEmail(email)
-  }
+  useEffect(() => {
+    // Get current session on mount
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session)
+      setLoading(false)
+    })
 
-  const logout = () => {
-    localStorage.removeItem(STORAGE_KEY)
-    setUserEmail(null)
+    // Listen for auth changes (magic link clicks, logouts)
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      (_event, session) => {
+        setSession(session)
+        setLoading(false)
+      }
+    )
+
+    return () => subscription.unsubscribe()
+  }, [])
+
+  const signOut = async () => {
+    await supabase.auth.signOut()
   }
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn: !!userEmail, userEmail, login, logout }}>
+    <AuthContext.Provider value={{ session, loading, signOut }}>
       {children}
     </AuthContext.Provider>
   )
