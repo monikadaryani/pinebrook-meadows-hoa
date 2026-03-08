@@ -46,3 +46,44 @@ export interface SiteSettings {
   propertyManagerPhone: string
   propertyManagerMailingAddress: string
 }
+
+export interface SanityAnnouncement {
+  _id: string
+  title: string
+  date: string
+  category: string
+  body: string
+  pinned: boolean
+}
+
+export interface SanityBoardMember {
+  _id: string
+  name: string
+  role: string
+  displayOrder: number
+}
+
+export interface SanityVendor {
+  _id: string
+  name: string
+  category: string
+  phone?: string
+  email?: string
+  description?: string
+}
+
+export interface SanityDocument {
+  _id: string
+  title: string
+  description?: string
+  file: { asset: { url: string } }
+  category: 'governing' | 'minutes' | 'financial'
+}
+
+export interface SanitySettings {
+  heroTagline?: string
+  propertyManagerName?: string
+  propertyManagerEmail?: string
+  propertyManagerPhone?: string
+  propertyManagerMailingAddress?: string
+}
