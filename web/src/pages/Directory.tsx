@@ -9,7 +9,7 @@ import type { Homeowner } from '@/types'
 function groupByStreet(list: Homeowner[]) {
   const map = new Map<string, Homeowner[]>()
   list.forEach((h) => {
-    const street = h.address.split(',')[0].trim()
+    const street = h.address.split(',')[0].trim().replace(/^\d+\s+/, '')
     if (!map.has(street)) map.set(street, [])
     map.get(street)!.push(h)
   })
