@@ -69,7 +69,6 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-r from-[#0a1f14]/40 via-transparent to-[#0a1f14]/40" />
 
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 py-32 text-center">
-          <p className="text-xs tracking-[0.3em] uppercase text-white/60 mb-5 font-medium">Sammamish, Washington</p>
           <h1 className="font-playfair font-bold text-5xl md:text-7xl mb-5 leading-tight drop-shadow-lg">
             Pine Brook Meadows
           </h1>
