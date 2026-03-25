@@ -69,11 +69,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-r from-[#0a1f14]/40 via-transparent to-[#0a1f14]/40" />
 
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 py-32 text-center">
-          <h1 className="font-playfair font-bold text-5xl md:text-7xl mb-5 leading-tight drop-shadow-lg">
-            Pine Brook Meadows
-          </h1>
-          <div className="w-16 h-px bg-white/40 mx-auto mb-5" />
-          <p className="text-lg text-white/75 mb-10 max-w-lg mx-auto font-lora italic">{tagline}</p>
+          <p className="font-playfair italic text-2xl md:text-3xl text-white/90 mb-10 max-w-xl mx-auto drop-shadow">{tagline}</p>
           <div className="flex flex-wrap gap-3 justify-center">
             <Button asChild size="lg" className="bg-white text-primary-800 hover:bg-white/90 font-semibold shadow-lg">
               <Link to="/announcements">View Announcements</Link>
