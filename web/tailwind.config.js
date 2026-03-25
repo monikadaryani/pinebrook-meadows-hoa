@@ -6,6 +6,7 @@ export default {
     extend: {
       fontFamily: {
         playfair: ['"Playfair Display"', 'serif'],
+        lora: ['Lora', 'Georgia', 'serif'],
       },
       colors: {
         primary: {

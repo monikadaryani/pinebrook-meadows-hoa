@@ -19,19 +19,20 @@ export default function Navbar() {
   const { session, signOut } = useAuth()
 
   const linkClass = ({ isActive }: { isActive: boolean }) =>
-    `text-sm font-medium transition-colors hover:text-primary ${isActive ? 'text-primary' : 'text-gray-600'}`
+    `text-sm tracking-wide transition-colors hover:text-primary-700 ${isActive ? 'text-primary-700 font-semibold' : 'text-gray-500 font-medium'}`
 
   return (
-    <nav className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
+    <nav className="sticky top-0 z-50 border-b shadow-sm" style={{ backgroundColor: '#fdfbf8', borderColor: '#e8e0d5' }}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16">
-          <Link to="/" className="flex items-center gap-2.5">
-            <div className="w-9 h-9 bg-primary-700 rounded-full flex items-center justify-center flex-shrink-0">
-              <span className="text-white font-bold text-sm">PBM</span>
+          <Link to="/" className="flex items-center gap-3">
+            <div className="w-9 h-9 bg-primary-700 rounded-full flex items-center justify-center flex-shrink-0 shadow-sm">
+              <span className="text-white font-playfair font-bold text-xs tracking-wider">PBM</span>
             </div>
-            <span className="font-playfair font-bold text-lg text-gray-900 hidden sm:block">
-              Pine Brook Meadows
-            </span>
+            <div className="hidden sm:block">
+              <span className="font-playfair font-bold text-lg text-gray-900 leading-none">Pine Brook Meadows</span>
+              <p className="text-[10px] tracking-widest text-primary-600 uppercase font-medium leading-none mt-0.5">Sammamish, WA</p>
+            </div>
           </Link>
 
           {/* Desktop */}
@@ -69,7 +70,7 @@ export default function Navbar() {
 
         {/* Mobile menu */}
         {open && (
-          <div className="md:hidden py-3 border-t border-gray-100 space-y-0.5">
+          <div className="md:hidden py-3 border-t space-y-0.5" style={{ borderColor: '#e8e0d5' }}>
             {publicLinks.map((l) => (
               <NavLink
                 key={l.to}

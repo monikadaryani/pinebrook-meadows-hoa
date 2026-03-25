@@ -60,37 +60,51 @@ export default function Home() {
   return (
     <>
       {/* Hero */}
-      <section className="relative bg-primary-800 text-white overflow-hidden">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80')] bg-cover bg-center opacity-20" />
-        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 py-28 text-center">
-          <h1 className="font-playfair font-bold text-5xl md:text-6xl mb-4 leading-tight">
+      <section className="relative text-white overflow-hidden" style={{ backgroundColor: '#0f2d1e' }}>
+        {/* Background image */}
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1448375240586-882707db888b?w=1600&q=80')] bg-cover bg-center opacity-40" />
+        {/* Layered gradient: dark at bottom, slightly transparent at top */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0a1f14]/80 via-transparent to-[#0a1f14]/30" />
+        {/* Subtle vignette */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0a1f14]/40 via-transparent to-[#0a1f14]/40" />
+
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 py-32 text-center">
+          <p className="text-xs tracking-[0.3em] uppercase text-white/60 mb-5 font-medium">Sammamish, Washington</p>
+          <h1 className="font-playfair font-bold text-5xl md:text-7xl mb-5 leading-tight drop-shadow-lg">
             Pine Brook Meadows
           </h1>
-          <p className="text-xl text-white/80 mb-8 max-w-xl mx-auto">{tagline}</p>
+          <div className="w-16 h-px bg-white/40 mx-auto mb-5" />
+          <p className="text-lg text-white/75 mb-10 max-w-lg mx-auto font-lora italic">{tagline}</p>
           <div className="flex flex-wrap gap-3 justify-center">
-            <Button asChild size="lg" className="bg-white text-primary-800 hover:bg-white/90 font-semibold">
+            <Button asChild size="lg" className="bg-white text-primary-800 hover:bg-white/90 font-semibold shadow-lg">
               <Link to="/announcements">View Announcements</Link>
             </Button>
             {session ? (
-              <Button asChild size="lg" variant="outline" className="border-white/60 text-white hover:bg-white/10 bg-transparent">
+              <Button asChild size="lg" variant="outline" className="border-white/50 text-white hover:bg-white/10 bg-transparent backdrop-blur-sm">
                 <Link to="/documents">Member Area</Link>
               </Button>
             ) : (
-              <Button asChild size="lg" variant="outline" className="border-white/60 text-white hover:bg-white/10 bg-transparent">
+              <Button asChild size="lg" variant="outline" className="border-white/50 text-white hover:bg-white/10 bg-transparent backdrop-blur-sm">
                 <Link to="/login">Member Login</Link>
               </Button>
             )}
           </div>
         </div>
+
+        {/* Bottom fade into page background */}
+        <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-[#faf8f5] to-transparent" />
       </section>
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 space-y-16">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 space-y-20">
 
         {/* Latest Announcements */}
         <section>
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="font-playfair font-bold text-3xl text-gray-900">Latest Announcements</h2>
-            <Link to="/announcements" className="text-sm text-primary-700 hover:underline font-medium">View all →</Link>
+          <div className="flex items-end justify-between mb-8">
+            <div>
+              <p className="text-xs tracking-widest uppercase text-primary-600 font-medium mb-2">What's happening</p>
+              <h2 className="font-playfair font-bold text-3xl text-gray-900">Latest Announcements</h2>
+            </div>
+            <Link to="/announcements" className="text-sm text-primary-700 hover:underline font-medium mb-1">View all →</Link>
           </div>
           {loading ? (
             <div className="grid gap-4 md:grid-cols-3">
@@ -125,8 +139,9 @@ export default function Home() {
         </section>
 
         {/* Board of Directors */}
-        <section>
-          <h2 className="font-playfair font-bold text-3xl text-gray-900 mb-6">Board of Directors</h2>
+        <section className="rounded-2xl px-8 py-10 -mx-4 sm:-mx-2" style={{ backgroundColor: '#f4f0ea' }}>
+          <p className="text-xs tracking-widest uppercase text-primary-600 font-medium mb-2">Your representatives</p>
+          <h2 className="font-playfair font-bold text-3xl text-gray-900 mb-8">Board of Directors</h2>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {displayBoard.map((m) => (
               <Card key={m._id}>
@@ -151,7 +166,8 @@ export default function Home() {
 
         {/* Contact */}
         <section>
-          <h2 className="font-playfair font-bold text-3xl text-gray-900 mb-6">Contact</h2>
+          <p className="text-xs tracking-widest uppercase text-primary-600 font-medium mb-2">Get in touch</p>
+          <h2 className="font-playfair font-bold text-3xl text-gray-900 mb-8">Contact</h2>
           <Card className="max-w-sm">
             <CardContent className="pt-5 space-y-4">
               <div>
