@@ -25,14 +25,9 @@ export default function Navbar() {
     <nav className="sticky top-0 z-50 border-b shadow-sm" style={{ backgroundColor: '#fdfbf8', borderColor: '#e8e0d5' }}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16">
-          <Link to="/" className="flex items-center gap-3">
-            <div className="w-9 h-9 bg-primary-700 rounded-full flex items-center justify-center flex-shrink-0 shadow-sm">
-              <span className="text-white font-playfair font-bold text-xs tracking-wider">PBM</span>
-            </div>
-            <div className="hidden sm:block">
-              <span className="font-playfair font-bold text-lg text-gray-900 leading-none">Pine Brook Meadows</span>
-              <p className="text-[10px] tracking-widest text-primary-600 uppercase font-medium leading-none mt-0.5">Sammamish, WA</p>
-            </div>
+          <Link to="/" className="flex flex-col">
+            <span className="font-playfair font-bold text-lg text-gray-900 leading-none">Pine Brook Meadows</span>
+            <p className="text-[10px] tracking-widest text-primary-600 uppercase font-medium leading-none mt-0.5">Sammamish, WA</p>
           </Link>
 
           {/* Desktop */}
