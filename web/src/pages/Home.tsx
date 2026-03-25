@@ -70,7 +70,7 @@ export default function Home() {
 
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 py-32 text-center">
           <h1 className="font-playfair font-bold text-5xl md:text-7xl mb-5 leading-tight drop-shadow-lg">
-            Pine Brook Meadows
+            Sammamish, WA
           </h1>
           <div className="w-16 h-px bg-white/40 mx-auto mb-5" />
           <p className="font-playfair italic text-2xl md:text-3xl text-white/90 mb-10 max-w-xl mx-auto drop-shadow">{tagline}</p>
