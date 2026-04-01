@@ -5,6 +5,7 @@ import Layout from '@/components/Layout'
 import Home from '@/pages/Home'
 import Announcements from '@/pages/Announcements'
 import About from '@/pages/About'
+import Contact from '@/pages/Contact'
 import Login from '@/pages/Login'
 import AuthCallback from '@/pages/AuthCallback'
 import Documents from '@/pages/Documents'
@@ -20,6 +21,7 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/announcements" element={<Announcements />} />
             <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
             <Route path="/login" element={<Login />} />
             <Route path="/auth/callback" element={<AuthCallback />} />
             <Route
