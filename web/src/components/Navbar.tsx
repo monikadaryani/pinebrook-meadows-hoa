@@ -6,7 +6,7 @@ import { useAuth } from '@/contexts/AuthContext'
 
 const publicLinks = [
   { to: '/announcements', label: 'Announcements' },
-  { to: '/vendors', label: 'Vendors' },
+  { to: '/about', label: 'About' },
 ]
 
 const memberLinks = [

@@ -4,7 +4,7 @@ import { ProtectedRoute } from '@/components/ProtectedRoute'
 import Layout from '@/components/Layout'
 import Home from '@/pages/Home'
 import Announcements from '@/pages/Announcements'
-import Vendors from '@/pages/Vendors'
+import About from '@/pages/About'
 import Login from '@/pages/Login'
 import AuthCallback from '@/pages/AuthCallback'
 import Documents from '@/pages/Documents'
@@ -19,7 +19,7 @@ export default function App() {
           <Route element={<Layout />}>
             <Route path="/" element={<Home />} />
             <Route path="/announcements" element={<Announcements />} />
-            <Route path="/vendors" element={<Vendors />} />
+            <Route path="/about" element={<About />} />
             <Route path="/login" element={<Login />} />
             <Route path="/auth/callback" element={<AuthCallback />} />
             <Route
