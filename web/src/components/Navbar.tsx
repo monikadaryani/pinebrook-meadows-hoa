@@ -5,8 +5,8 @@ import { Button } from '@/components/ui/button'
 import { useAuth } from '@/contexts/AuthContext'
 
 const publicLinks = [
-  { to: '/announcements', label: 'Announcements' },
   { to: '/about', label: 'About' },
+  { to: '/announcements', label: 'Announcements' },
 ]
 
 const memberLinks = [
