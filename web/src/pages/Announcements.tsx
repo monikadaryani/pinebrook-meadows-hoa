@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
-import { Pin, Calendar } from 'lucide-react'
+import { Pin, Calendar, Search } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Input } from '@/components/ui/input'
 import { sanityClient } from '@/lib/sanity'
 import type { SanityAnnouncement } from '@/types'
 
@@ -13,6 +14,7 @@ const BADGE_COLORS: Record<string, string> = {
 
 export default function Announcements() {
   const [announcements, setAnnouncements] = useState<SanityAnnouncement[]>([])
+  const [query, setQuery] = useState('')
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -22,10 +24,29 @@ export default function Announcements() {
       .catch(() => setLoading(false))
   }, [])
 
+  const filtered = announcements.filter((a) => {
+    const q = query.toLowerCase()
+    return (
+      a.title.toLowerCase().includes(q) ||
+      a.body?.toLowerCase().includes(q) ||
+      a.category?.toLowerCase().includes(q)
+    )
+  })
+
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 py-12">
       <h1 className="font-playfair font-bold text-4xl text-gray-900 mb-2">Announcements</h1>
-      <p className="text-gray-500 mb-10">Community news and updates from the board</p>
+      <p className="text-gray-500 mb-6">Community news and updates from the board</p>
+
+      <div className="relative mb-8">
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400 pointer-events-none" />
+        <Input
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Search announcements…"
+          className="pl-9"
+        />
+      </div>
 
       {loading && (
         <div className="space-y-4">
@@ -37,8 +58,12 @@ export default function Announcements() {
         <p className="text-gray-400 text-center py-12">No announcements yet. Check back soon!</p>
       )}
 
+      {!loading && announcements.length > 0 && filtered.length === 0 && (
+        <p className="text-gray-400 text-center py-12">No announcements match "{query}".</p>
+      )}
+
       <div className="space-y-5">
-        {announcements.map((a) => (
+        {filtered.map((a) => (
           <Card key={a._id} className={a.pinned ? 'border-primary-600 ring-1 ring-primary-200' : ''}>
             <CardHeader className="pb-2">
               <div className="flex items-start justify-between gap-3 flex-wrap">
