@@ -28,6 +28,7 @@ export default function Login() {
       .rpc('is_registered_homeowner', { input_email: email })
 
     if (rpcError) {
+      console.error('RPC error:', rpcError)
       setState('error')
       return
     }
@@ -47,6 +48,7 @@ export default function Login() {
     })
 
     if (error) {
+      console.error('OTP error:', error)
       setState('error')
       return
     }
