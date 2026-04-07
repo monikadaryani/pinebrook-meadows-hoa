@@ -12,10 +12,12 @@ export default function Contact() {
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     const form = e.currentTarget
+    const data = new FormData(form)
+    data.set('subject', `HOA website - ${data.get('subject')}`)
     fetch('/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams(new FormData(form) as unknown as Record<string, string>).toString(),
+      body: new URLSearchParams(data as unknown as Record<string, string>).toString(),
     })
       .then(() => setSubmitted(true))
       .catch(() => setSubmitted(true)) // still show success — Netlify handles delivery
