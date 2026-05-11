@@ -12,6 +12,7 @@ const publicLinks = [
 
 const memberLinks = [
   { to: '/documents', label: 'Documents' },
+  { to: '/minutes', label: 'Minutes' },
   { to: '/directory', label: 'Directory' },
 ]
 

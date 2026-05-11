@@ -6,6 +6,7 @@ import Home from '@/pages/Home'
 import Announcements from '@/pages/Announcements'
 import About from '@/pages/About'
 import Contact from '@/pages/Contact'
+import Minutes from '@/pages/Minutes'
 import Login from '@/pages/Login'
 import AuthCallback from '@/pages/AuthCallback'
 import Documents from '@/pages/Documents'
@@ -31,6 +32,10 @@ export default function App() {
             <Route
               path="/directory"
               element={<ProtectedRoute><Directory /></ProtectedRoute>}
+            />
+            <Route
+              path="/minutes"
+              element={<ProtectedRoute><Minutes /></ProtectedRoute>}
             />
             <Route path="*" element={<NotFound />} />
           </Route>
