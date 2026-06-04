@@ -20,6 +20,7 @@ export default function Home() {
   const [announcements, setAnnouncements] = useState<SanityAnnouncement[]>([])
   const [board, setBoard] = useState<SanityBoardMember[]>([])
   const [settings, setSettings] = useState<SanitySettings | null>(null)
+  const [manager, setManager] = useState<Record<string, string> | null>(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -33,10 +34,14 @@ export default function Home() {
       sanityClient.fetch<SanitySettings>(
         `*[_type == "siteSettings"][0]`
       ),
-    ]).then(([ann, brd, cfg]) => {
+      sanityClient.fetch(
+        `*[_type == "propertyManager"][0]{ name, email, phone, mailingAddress }`
+      ),
+    ]).then(([ann, brd, cfg, mgr]) => {
       setAnnouncements(ann ?? [])
       setBoard(brd ?? [])
       setSettings(cfg ?? null)
+      setManager(mgr ?? null)
       setLoading(false)
     }).catch(() => setLoading(false))
   }, [])
@@ -51,11 +56,12 @@ export default function Home() {
     : mockBoard.map(m => ({ ...m, _id: m.id, displayOrder: 0, phone: undefined, email: undefined }))
 
   const cfg = settings ?? {}
+  const mgr = manager ?? {}
   const tagline = cfg.heroTagline ?? mockSettings.heroTagline
-  const managerName = cfg.propertyManagerName ?? mockSettings.propertyManagerName
-  const managerEmail = cfg.propertyManagerEmail ?? mockSettings.propertyManagerEmail
-  const managerPhone = cfg.propertyManagerPhone ?? mockSettings.propertyManagerPhone
-  const managerAddress = cfg.propertyManagerMailingAddress ?? mockSettings.propertyManagerMailingAddress
+  const managerName = mgr.name ?? mockSettings.propertyManagerName
+  const managerEmail = mgr.email ?? mockSettings.propertyManagerEmail
+  const managerPhone = mgr.phone ?? mockSettings.propertyManagerPhone
+  const managerAddress = mgr.mailingAddress ?? mockSettings.propertyManagerMailingAddress
 
   return (
     <>
