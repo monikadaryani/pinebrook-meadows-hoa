@@ -11,7 +11,7 @@ const publicLinks = [
 ]
 
 const memberLinks = [
-  { to: '/minutes', label: 'Minutes of Meeting' },
+  { to: '/hoa', label: 'HOA Association' },
   { to: '/documents', label: 'Documents' },
   { to: '/directory', label: 'Directory' },
 ]
