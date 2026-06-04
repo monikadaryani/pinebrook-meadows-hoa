@@ -4,5 +4,6 @@ import { vendor } from './vendor'
 import { boardMember } from './boardMember'
 import { siteSettings } from './siteSettings'
 import { propertyManager } from './propertyManager'
+import { event } from './event'
 
-export const schemaTypes = [announcement, hoaDocument, vendor, boardMember, siteSettings, propertyManager]
+export const schemaTypes = [announcement, hoaDocument, vendor, boardMember, siteSettings, propertyManager, event]

@@ -7,6 +7,7 @@ import Announcements from '@/pages/Announcements'
 import About from '@/pages/About'
 import Contact from '@/pages/Contact'
 import HOA from '@/pages/HOA'
+import CalendarPage from '@/pages/Calendar'
 import Login from '@/pages/Login'
 import AuthCallback from '@/pages/AuthCallback'
 import Documents from '@/pages/Documents'
@@ -37,6 +38,7 @@ export default function App() {
               path="/hoa"
               element={<ProtectedRoute><HOA /></ProtectedRoute>}
             />
+            <Route path="/calendar" element={<CalendarPage />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
