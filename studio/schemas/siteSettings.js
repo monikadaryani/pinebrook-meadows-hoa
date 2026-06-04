@@ -10,5 +10,9 @@ export const siteSettings = defineType({
     defineField({ name: 'propertyManagerEmail', type: 'string', title: 'Property manager email' }),
     defineField({ name: 'propertyManagerPhone', type: 'string', title: 'Property manager phone' }),
     defineField({ name: 'propertyManagerMailingAddress', type: 'string', title: 'Mailing address' }),
+    defineField({ name: 'aboutIntro', type: 'text', title: 'About — intro line', rows: 2, description: 'Short subtitle shown under the About heading' }),
+    defineField({ name: 'aboutParagraph1', type: 'text', title: 'About — paragraph 1', rows: 4 }),
+    defineField({ name: 'aboutParagraph2', type: 'text', title: 'About — paragraph 2', rows: 4 }),
+    defineField({ name: 'aboutParagraph3', type: 'text', title: 'About — paragraph 3', rows: 4 }),
   ],
 })
