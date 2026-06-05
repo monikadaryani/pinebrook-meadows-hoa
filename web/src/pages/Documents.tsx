@@ -7,7 +7,6 @@ import type { SanityDocument } from '@/types'
 
 const CATEGORIES: { value: SanityDocument['category']; label: string }[] = [
   { value: 'governing', label: 'Governing Documents' },
-  { value: 'minutes', label: 'Meeting Minutes' },
   { value: 'financial', label: 'Financial Documents' },
 ]
 
