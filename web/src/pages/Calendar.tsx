@@ -55,6 +55,8 @@ function getMonthCells(year: number, month: number) {
   return cells
 }
 
+const WEEKDAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+
 function MonthGrid({
   events,
   selectedDate,
@@ -81,8 +83,8 @@ function MonthGrid({
   }, {})
 
   return (
-    <div className="border border-gray-200 rounded-xl p-4 sm:p-5 mb-10">
-      <div className="flex items-center justify-between mb-4">
+    <div className="border border-gray-200 rounded-xl p-3 sm:p-4 mb-10">
+      <div className="flex items-center justify-between mb-3 px-1">
         <button
           onClick={() => setViewDate(new Date(year, month - 1, 1))}
           className="p-1.5 rounded-md hover:bg-gray-100 text-gray-500 transition-colors"
@@ -102,33 +104,54 @@ function MonthGrid({
         </button>
       </div>
 
-      <div className="grid grid-cols-7 gap-1 text-center text-xs font-medium text-gray-400 mb-2">
-        {['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'].map((d) => <div key={d}>{d}</div>)}
+      <div className="grid grid-cols-7 text-center text-xs font-medium text-gray-400 mb-1">
+        {WEEKDAYS.map((d) => <div key={d} className="py-1">{d.slice(0, 3)}</div>)}
       </div>
 
-      <div className="grid grid-cols-7 gap-1">
+      <div className="grid grid-cols-7 gap-px bg-gray-200 rounded-lg overflow-hidden border border-gray-200">
         {cells.map((day, i) => {
-          if (day === null) return <div key={i} />
+          if (day === null) {
+            return <div key={i} className="bg-gray-50 min-h-[72px] sm:min-h-[92px]" />
+          }
           const iso = toISODate(year, month, day)
           const dayEvents = eventsByDate[iso] ?? []
           const hasEvents = dayEvents.length > 0
           const isToday = iso === todayISO
           const isSelected = iso === selectedDate
+          const visible = dayEvents.slice(0, 2)
+          const extra = dayEvents.length - visible.length
 
           return (
             <button
               key={i}
               onClick={() => hasEvents && onSelectDate(isSelected ? null : iso)}
               disabled={!hasEvents}
-              className={`aspect-square flex flex-col items-center justify-center gap-0.5 rounded-md text-sm transition-colors
-                ${isSelected ? 'bg-primary-600 text-white' : isToday ? 'bg-primary-50 text-primary-700 font-semibold' : 'text-gray-700'}
-                ${hasEvents && !isSelected ? 'hover:bg-primary-100 cursor-pointer' : ''}
+              className={`flex flex-col min-h-[72px] sm:min-h-[92px] p-1 text-left bg-white transition-colors
+                ${isSelected ? 'bg-primary-50 ring-2 ring-inset ring-primary-600' : ''}
+                ${hasEvents && !isSelected ? 'hover:bg-gray-50 cursor-pointer' : ''}
                 ${!hasEvents ? 'cursor-default' : ''}`}
             >
-              {day}
-              {hasEvents && (
-                <span className={`h-1.5 w-1.5 rounded-full ${isSelected ? 'bg-white' : 'bg-primary-600'}`} />
-              )}
+              <div className="flex justify-end">
+                <span
+                  className={`flex items-center justify-center h-6 w-6 rounded-full text-xs font-medium flex-shrink-0
+                    ${isToday ? 'bg-primary-600 text-white' : 'text-gray-700'}`}
+                >
+                  {day}
+                </span>
+              </div>
+              <div className="flex flex-col gap-0.5 mt-0.5 overflow-hidden">
+                {visible.map((e) => (
+                  <span
+                    key={e._id}
+                    className={`block truncate text-[10px] sm:text-[11px] leading-4 px-1 py-0.5 rounded ${BADGE_COLORS[e.category ?? 'Other'] ?? BADGE_COLORS.Other}`}
+                  >
+                    {e.title}
+                  </span>
+                ))}
+                {extra > 0 && (
+                  <span className="text-[10px] text-gray-400 px-1">+{extra} more</span>
+                )}
+              </div>
             </button>
           )
         })}
