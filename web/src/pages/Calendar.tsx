@@ -127,7 +127,7 @@ function MonthGrid({
             >
               {day}
               {hasEvents && (
-                <span className={`h-1.5 w-1.5 rounded-full ${isSelected ? 'bg-white' : 'bg-primary-500'}`} />
+                <span className={`h-1.5 w-1.5 rounded-full ${isSelected ? 'bg-white' : 'bg-primary-600'}`} />
               )}
             </button>
           )

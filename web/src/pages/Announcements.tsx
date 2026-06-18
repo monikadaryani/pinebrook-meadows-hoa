@@ -88,7 +88,7 @@ export default function Announcements() {
 
       <div className="space-y-5">
         {filtered.map((a) => (
-          <Card key={a._id} className={a.pinned ? 'border-primary-600 ring-1 ring-primary-200' : ''}>
+          <Card key={a._id} className={a.pinned ? 'border-primary-600 ring-1 ring-primary-100' : ''}>
             <CardHeader className="pb-2">
               <div className="flex items-start justify-between gap-3 flex-wrap">
                 <div className="flex items-start gap-2 min-w-0">
