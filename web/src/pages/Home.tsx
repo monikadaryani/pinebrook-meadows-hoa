@@ -7,6 +7,7 @@ import { sanityClient } from '@/lib/sanity'
 import { useAuth } from '@/contexts/AuthContext'
 import { siteSettings as mockSettings, boardMembers as mockBoard, announcements as mockAnnouncements } from '@/data/mockData'
 import type { SanityAnnouncement, SanityBoardMember, SanitySettings } from '@/types'
+import heroImage from '@/assets/hero-park.jpg'
 
 const BADGE_COLORS: Record<string, string> = {
   Meeting: 'bg-blue-100 text-blue-800',
@@ -68,7 +69,10 @@ export default function Home() {
       {/* Hero */}
       <section className="relative text-white overflow-hidden" style={{ backgroundColor: '#0f2d1e' }}>
         {/* Background image */}
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1448375240586-882707db888b?w=1600&q=80')] bg-cover bg-center opacity-40" />
+        <div
+          className="absolute inset-0 bg-cover bg-center opacity-50"
+          style={{ backgroundImage: `url(${heroImage})` }}
+        />
         {/* Layered gradient: dark at bottom, slightly transparent at top */}
         <div className="absolute inset-0 bg-gradient-to-t from-[#0a1f14]/80 via-transparent to-[#0a1f14]/30" />
         {/* Subtle vignette */}
