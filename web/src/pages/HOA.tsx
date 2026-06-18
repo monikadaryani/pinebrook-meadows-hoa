@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { FileText, Download, Lock, ChevronDown, ChevronRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
@@ -121,11 +122,10 @@ export default function HOA() {
           <h3 className="font-semibold text-gray-900 mb-2">Monthly Board Meetings</h3>
           <p className="text-gray-600 leading-relaxed text-sm">
             The PBM Board of Directors typically meet virtually on the first Thursday of every month. All PBM residents
-            are welcome to attend Board meetings. If you have a concern you would like to address, please contact the
-            property manager,{' '}
-            <a href="mailto:Jkirkman@pcamgmt.com" className="text-primary-700 hover:underline">
-              Jeff Kirkman | Jkirkman@pcamgmt.com
-            </a>{' '}
+            are welcome to attend Board meetings. If you have a concern you would like to address, please{' '}
+            <Link to="/contact" className="text-primary-700 hover:underline">
+              reach out through our Contact form
+            </Link>{' '}
             to have your topic added to the agenda. Agendas are emailed ahead of time and meeting minutes are posted
             to the corresponding tab below.
           </p>
@@ -188,11 +188,11 @@ export default function HOA() {
             ))}
           </ul>
           <p className="text-sm text-gray-600 leading-relaxed">
-            For more information about future opportunities, contact property manager,{' '}
-            <a href="mailto:Jkirkman@pcamgmt.com" className="text-primary-700 hover:underline">
-              Jeff Kirkman | Jkirkman@pcamgmt.com
-            </a>{' '}
-            who will forward your request to the PBM Board.
+            For more information about future opportunities, please{' '}
+            <Link to="/contact" className="text-primary-700 hover:underline">
+              reach out through our Contact form
+            </Link>{' '}
+            and we'll forward your request to the PBM Board.
           </p>
         </TabsContent>
       </Tabs>

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useLocation, Navigate } from 'react-router-dom'
+import { useLocation, Navigate, Link } from 'react-router-dom'
 import { Mail, AlertCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -108,10 +108,10 @@ export default function Login() {
           <div className="flex items-start gap-2 text-sm text-red-600 bg-red-50 border border-red-100 rounded-lg p-3">
             <AlertCircle className="h-4 w-4 flex-shrink-0 mt-0.5" />
             <span>
-              This email isn't registered with Pine Brook Meadows HOA. Contact{' '}
-              <a href="mailto:jkirkman@pcamgmt.com" className="underline font-medium">
-                Jeff Kirkman
-              </a>{' '}
+              This email isn't registered with Pine Brook Meadows HOA. Please{' '}
+              <Link to="/contact" className="underline font-medium">
+                reach out through our Contact form
+              </Link>{' '}
               to get access.
             </span>
           </div>

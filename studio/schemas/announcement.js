@@ -35,6 +35,12 @@ export const announcement = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'image',
+      type: 'image',
+      title: 'Photo (optional)',
+      options: { hotspot: true },
+    }),
+    defineField({
       name: 'pinned',
       type: 'boolean',
       title: 'Pin to top of announcements',
@@ -42,6 +48,6 @@ export const announcement = defineType({
     }),
   ],
   preview: {
-    select: { title: 'title', subtitle: 'date' },
+    select: { title: 'title', subtitle: 'date', media: 'image' },
   },
 })

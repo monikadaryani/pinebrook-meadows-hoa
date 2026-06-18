@@ -55,6 +55,7 @@ export interface SanityAnnouncement {
   category: string
   body: string
   pinned: boolean
+  image?: { asset?: { _ref: string } }
 }
 
 export interface SanityBoardMember {

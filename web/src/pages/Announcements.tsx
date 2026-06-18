@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Pin, Calendar, Search } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
-import { sanityClient } from '@/lib/sanity'
+import { sanityClient, urlFor } from '@/lib/sanity'
 import type { SanityAnnouncement } from '@/types'
 
 const BADGE_COLORS: Record<string, string> = {
@@ -105,6 +105,13 @@ export default function Announcements() {
               </div>
             </CardHeader>
             <CardContent>
+              {a.image?.asset && (
+                <img
+                  src={urlFor(a.image).width(800).url()}
+                  alt={a.title}
+                  className="w-full max-h-80 object-cover rounded-lg mb-4"
+                />
+              )}
               <p className="text-gray-700 whitespace-pre-wrap leading-relaxed">{a.body}</p>
             </CardContent>
           </Card>
