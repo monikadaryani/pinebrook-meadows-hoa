@@ -70,8 +70,8 @@ export default function Home() {
       <section className="relative text-white overflow-hidden" style={{ backgroundColor: '#0f2d1e' }}>
         {/* Background image */}
         <div
-          className="absolute inset-0 bg-cover bg-center opacity-50"
-          style={{ backgroundImage: `url(${heroImage})` }}
+          className="absolute inset-0 bg-cover opacity-50"
+          style={{ backgroundImage: `url(${heroImage})`, backgroundPosition: 'center 75%' }}
         />
         {/* Layered gradient: dark at bottom, slightly transparent at top */}
         <div className="absolute inset-0 bg-gradient-to-t from-[#0a1f14]/80 via-transparent to-[#0a1f14]/30" />
