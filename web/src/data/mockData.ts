@@ -1,4 +1,4 @@
-import type { Announcement, BoardMember, Vendor, HoaDocument, Homeowner, SiteSettings } from '@/types'
+import type { BoardMember, Vendor, HoaDocument, Homeowner, SiteSettings } from '@/types'
 
 export const siteSettings: SiteSettings = {
   heroTagline: 'A welcoming community in Sammamish, WA',
@@ -13,49 +13,6 @@ export const boardMembers: BoardMember[] = [
   { id: '2', name: 'Pam Miller', role: 'Vice President' },
   { id: '3', name: 'Navranjan Khanna', role: 'Treasurer' },
   { id: '4', name: 'Kersten Brinkworth', role: 'Secretary' },
-]
-
-export const announcements: Announcement[] = [
-  {
-    id: '1',
-    title: 'Annual HOA Meeting — Save the Date',
-    date: '2026-04-15',
-    category: 'Meeting',
-    body: 'The annual HOA meeting will be held on April 15, 2026 at 7:00 PM. Location TBD. All homeowners are encouraged to attend. Agenda items include budget review, landscaping updates, and board elections.',
-    pinned: true,
-  },
-  {
-    id: '2',
-    title: 'Spring Landscaping Begins March 20',
-    date: '2026-03-10',
-    category: 'Maintenance',
-    body: 'Our landscaping crew will begin spring cleanup on March 20th. This includes pruning, mulching common areas, and reseeding bare patches in the park. Please keep pets indoors during treatment days.',
-    pinned: false,
-  },
-  {
-    id: '3',
-    title: 'Community Park Benches Replaced',
-    date: '2026-02-28',
-    category: 'General',
-    body: 'We are pleased to announce that the community park has new benches installed. Thank you to everyone who provided feedback during last year\'s survey. Enjoy the improved seating!',
-    pinned: false,
-  },
-  {
-    id: '4',
-    title: 'Reminder: Annual Dues Due April 1',
-    date: '2026-02-15',
-    category: 'General',
-    body: 'Annual HOA dues of $X are due by April 1, 2026. Please mail your check to the P.O. Box or contact Jeff Kirkman for payment instructions. Late fees apply after April 30.',
-    pinned: false,
-  },
-  {
-    id: '5',
-    title: 'Roof Inspection Reminder',
-    date: '2026-01-20',
-    category: 'Maintenance',
-    body: 'As a reminder, per the CC&Rs and the Roof Amendment, all roof replacements must be approved by the HOA board before work begins. Please submit your request to Jeff Kirkman with contractor details and material samples.',
-    pinned: false,
-  },
 ]
 
 export const vendors: Vendor[] = [

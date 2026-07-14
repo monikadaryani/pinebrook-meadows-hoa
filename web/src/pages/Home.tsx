@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { sanityClient } from '@/lib/sanity'
 import { useAuth } from '@/contexts/AuthContext'
-import { siteSettings as mockSettings, boardMembers as mockBoard, announcements as mockAnnouncements } from '@/data/mockData'
+import { siteSettings as mockSettings, boardMembers as mockBoard } from '@/data/mockData'
 import type { SanityAnnouncement, SanityBoardMember, SanitySettings } from '@/types'
 import heroImage from '@/assets/hero-park.jpg'
 
@@ -47,10 +47,7 @@ export default function Home() {
     }).catch(() => setLoading(false))
   }, [])
 
-  // Fall back to mock data while Sanity is empty
-  const displayAnnouncements = announcements.length > 0
-    ? announcements
-    : mockAnnouncements.slice(0, 3).map(a => ({ ...a, _id: a.id }))
+  const displayAnnouncements = announcements
 
   const displayBoard = board.length > 0
     ? board
@@ -119,6 +116,8 @@ export default function Home() {
             <div className="grid gap-4 md:grid-cols-3">
               {[1,2,3].map(i => <div key={i} className="h-40 bg-gray-100 rounded-lg animate-pulse" />)}
             </div>
+          ) : displayAnnouncements.length === 0 ? (
+            <p className="text-gray-400 text-center py-8">No announcements yet. Check back soon!</p>
           ) : (
             <div className="grid gap-4 md:grid-cols-3">
               {displayAnnouncements.map((a) => (
